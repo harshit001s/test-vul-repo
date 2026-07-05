@@ -70,6 +70,9 @@ if (array_key_exists("id", $_GET)) {
 		case "bac":
 			$vuln = 'Vulnerability: Broken Access Control';
 			break;
+		case "ssrf":
+			$vuln = 'Server-Side Request Forgery (SSRF)';
+			break;
 		default:
 			$vuln = "Unknown Vulnerability";
 	}
