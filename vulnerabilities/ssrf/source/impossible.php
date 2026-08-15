@@ -23,7 +23,12 @@ if( isset( $_POST[ 'Submit' ] ) ) {
 			$html .= '<pre>Blocked: access to private or reserved addresses is not allowed.</pre>';
 		}
 		else {
-			$response = @file_get_contents( $url );
+			$ch = curl_init();
+			curl_setopt( $ch, CURLOPT_URL, $url );
+			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+			curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, false );
+			$response = curl_exec( $ch );
+			curl_close($ch);
 
 			if( $response === false ) {
 				$html .= '<pre>Failed to fetch URL.</pre>';
